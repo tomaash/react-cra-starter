@@ -1,0 +1,44 @@
+{
+  "name": "toms-cra2",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^3.7.1",
+    "@material-ui/icons": "^3.0.1",
+    "@material-ui/lab": "^3.0.0-alpha.26",
+    "@rescripts/cli": "^0.0.7",
+    "@types/axios": "^0.14.0",
+    "@types/jest": "^23.3.10",
+    "@types/node": "^10.12.18",
+    "@types/react": "^16.7.18",
+    "@types/validatorjs": "^3.7.1",
+    "@uirouter/react": "^0.8.7",
+    "axios": "^0.18.0",
+    "mobx": "^5.8.0",
+    "mobx-react": "^5.4.3",
+    "mobx-react-form": "^1.35.1",
+    "postcss-import": "^12.0.1",
+    "react": "^16.7.0",
+    "react-app-rewire-postcss": "^3.0.2",
+    "react-dom": "^16.7.0",
+    "react-scripts": "2.1.2",
+    "tailwindcss": "^0.7.3",
+    "typescript": "^3.2.2",
+    "validatorjs": "^3.15.1"
+  },
+  "scripts": {
+    "start": "rescripts start",
+    "build": "rescripts build",
+    "test": "rescripts test",
+    "eject": "rescripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
