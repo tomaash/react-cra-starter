@@ -1,25 +1,28 @@
 import { observable } from 'mobx';
 import axios from 'axios';
-import { type } from 'os';
+import { BrowserNavigation, Route } from 'navi';
 
-interface Merchant {
-    name: string
-    headline: string
-    description: string,
-    _links: {
-        self: {
-            href: string
-        }
-    }
+interface User {
+  id: number
+  first_name: string
+  last_name: string
+  avatar: string
 }
 
 export class AppStore {
 
-    @observable merchants: Merchant[] = [];
+  @observable users: User[] = [];
+  @observable currentRoute: Route<any>
 
-    loadMerchants = async () => {
-        const res = await axios.get('http://localhost:8080/catalog/data/merchants')
-        this.merchants = res.data._embedded.merchants;
-    }
+  setupNavigation(navigation) {
+    navigation.subscribe((route) => {
+      this.currentRoute = route
+    })
+  }
+
+  loadUsers = async () => {
+    const res = await axios.get('https://reqres.in/api/users')
+    this.users = res.data.data
+  }
 
 }

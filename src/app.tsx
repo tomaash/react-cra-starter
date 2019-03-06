@@ -1,58 +1,64 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import logo from './logo.svg';
-import { UIRouter, UIRouterReact, UIView, pushStateLocationPlugin, trace } from '@uirouter/react';
-import bar, { Home } from './components/home';
-import { Foo } from './components/foo';
-import { List } from './components/list';
-import { Form } from './components/form';
+import bar, { Home } from '~/components/home';
+import { Foo } from '~/components/foo';
+import { List } from '~/components/list';
+import { Form } from '~/components/form';
 import { Provider } from 'mobx-react';
-import { AppStore } from './stores/AppStore';
-import { AppMenu } from './components/menu';
+import { AppStore } from '~/stores/AppStore';
 
-// define your states
-const states = [
-  {
-    name: 'home',
-    url: '/home',
-    component: Home,
-  },
-  {
-    name: 'foo',
-    url: '/foo',
-    component: Foo,
-  },
-  {
-    name: 'list',
-    url: '/list',
-    component: List
-  },
-  {
-    name: 'form',
-    url: '/form',
-    component: Form,
-  },
-];
+import { lazy, mount, route, createBrowserNavigation } from 'navi'
+import { View, NaviProvider } from 'react-navi'
+import AppLayout from '~/components/AppLayout';
+import { loadUsers } from './loaders/formLoader';
 
-// select your plugins
-const plugins = [pushStateLocationPlugin];
+// Define your routes
+const routes =
+  mount({
+    '/': route({
+      title: 'Home',
+      view: <Home />,
+    }),
+    '/foo': route({
+      title: 'Foo',
+      view: <Foo />,
+    }),
+    '/list': route({
+      title: 'List',
+      getData: () => loadUsers(),
+      view: <List />,
+    }),
+    '/form': route({
+      title: 'Form',
+      view: <Form />,
+    }),
+  })
 
-const routerConfig = (router: UIRouterReact) => {
-  router.urlRouter.otherwise('/home');
-  trace.enable(1);
-};
+const foo = 'foo'
+
+export const navigation = createBrowserNavigation({
+  routes,
+  context: {
+    foo
+  }
+})
+
+const appStore = new AppStore();
+appStore.setupNavigation(navigation)
 
 export class App extends Component {
-  appStore = new AppStore();
-
   render() {
     return (
-      <Provider appStore={this.appStore}>
-        <UIRouter plugins={plugins} states={states} config={routerConfig}>
+      <Provider appStore={appStore}>
+        <NaviProvider navigation={navigation}>
           <div>
-            <AppMenu />
-            <UIView />
+            <AppLayout>
+              <Suspense fallback={null}>
+                <View />
+              </Suspense>
+            </AppLayout>
           </div>
-        </UIRouter>
+        </NaviProvider>
       </Provider>
     );
   }

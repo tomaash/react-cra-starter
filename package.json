@@ -1,29 +1,31 @@
 {
-  "name": "toms-cra2",
-  "version": "1.0.0",
-  "private": true,
+  "name": "react-cra-starter",
+  "version": "1.1.0",
+  "license": "MIT",
   "dependencies": {
-    "@material-ui/core": "^3.7.1",
-    "@material-ui/icons": "^3.0.1",
-    "@material-ui/lab": "^3.0.0-alpha.26",
-    "@rescripts/cli": "^0.0.7",
+    "@material-ui/core": "^3.9.2",
+    "@material-ui/icons": "^3.0.2",
+    "@material-ui/lab": "^3.0.0-alpha.30",
+    "@rescripts/cli": "^0.0.10",
     "@types/axios": "^0.14.0",
-    "@types/jest": "^23.3.10",
-    "@types/node": "^10.12.18",
-    "@types/react": "^16.7.18",
-    "@types/validatorjs": "^3.7.1",
-    "@uirouter/react": "^0.8.7",
+    "@types/jest": "^24.0.9",
+    "@types/node": "^11.10.4",
+    "@types/react": "^16.8.6",
+    "@types/validatorjs": "^3.15.0",
     "axios": "^0.18.0",
-    "mobx": "^5.8.0",
+    "mobx": "^5.9.0",
     "mobx-react": "^5.4.3",
-    "mobx-react-form": "^1.35.1",
+    "mobx-react-form": "^1.39.1",
+    "mobx-react-lite": "^1.1.0",
+    "navi": "^0.11.6",
     "postcss-import": "^12.0.1",
-    "react": "^16.7.0",
+    "react": "^16.8.4",
     "react-app-rewire-postcss": "^3.0.2",
-    "react-dom": "^16.7.0",
-    "react-scripts": "2.1.2",
-    "tailwindcss": "^0.7.3",
-    "typescript": "^3.2.2",
+    "react-dom": "^16.8.4",
+    "react-navi": "^0.11.7",
+    "react-scripts": "2.1.4",
+    "tailwindcss": "^0.7.4",
+    "typescript": "^3.3.3333",
     "validatorjs": "^3.15.1"
   },
   "scripts": {
@@ -34,6 +36,11 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "^~/(.*)": "<rootDir>/src/$1"
+    }
   },
   "browserslist": [
     ">0.2%",

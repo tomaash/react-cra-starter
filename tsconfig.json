@@ -1,13 +1,19 @@
 {
+  "extends": "./tspaths.json",
   "compilerOptions": {
     "target": "es5",
-    "lib": ["es6", "es7", "dom"],
+    "lib": [
+      "es6",
+      "es7",
+      "dom"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "experimentalDecorators": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "strict": true,
+    "strict": false,
+    "strictNullChecks": false,
     "forceConsistentCasingInFileNames": true,
     "module": "esnext",
     "moduleResolution": "node",
