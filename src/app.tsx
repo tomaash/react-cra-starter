@@ -1,64 +1,47 @@
 import React, { Component, Suspense } from 'react';
 import logo from './logo.svg';
-import bar, { Home } from '~/components/home';
+import { Home } from '~/components/home';
 import { Foo } from '~/components/foo';
-import { List } from '~/components/list';
+// import { List } from '~/components/list';
 import { Form } from '~/components/form';
-import { Provider } from 'mobx-react';
 import { AppStore } from '~/stores/AppStore';
 
-import { lazy, mount, route, createBrowserNavigation } from 'navi'
-import { View, NaviProvider } from 'react-navi'
-import AppLayout from '~/components/AppLayout';
 import { loadUsers } from './loaders/formLoader';
 
-// Define your routes
-const routes =
-  mount({
-    '/': route({
-      title: 'Home',
-      view: <Home />,
-    }),
-    '/foo': route({
-      title: 'Foo',
-      view: <Foo />,
-    }),
-    '/list': route({
-      title: 'List',
-      getData: () => loadUsers(),
-      view: <List />,
-    }),
-    '/form': route({
-      title: 'Form',
-      view: <Form />,
-    }),
-  })
+import {
+  createHistory,
+  LocationProvider,
+  Link,
+  Router
+} from "@reach/router"
 
-const foo = 'foo'
+import { toJS } from 'mobx';
+import { AppMenu } from './components/AppMenu';
+import { Provider, observer } from 'mobx-react';
 
-export const navigation = createBrowserNavigation({
-  routes,
-  context: {
-    foo
-  }
-})
+export const history = createHistory(window as any)
+
 
 const appStore = new AppStore();
-appStore.setupNavigation(navigation)
+appStore.setupHistory(history)
 
+@observer
 export class App extends Component {
   render() {
+    console.log(toJS(appStore.currentRoute))
     return (
       <Provider appStore={appStore}>
-        <NaviProvider navigation={navigation}>
-          <div>
-            <AppLayout>
-              <Suspense fallback={null}>
-                <View />
-              </Suspense>
-            </AppLayout>
-          </div>
-        </NaviProvider>
+        <LocationProvider history={history}>
+          <AppMenu />
+          {/* <nav>
+            <NavLink to="/">Home</NavLink>
+            <NavLink to="foo/123">Foo</NavLink>
+          </nav> */}
+          <Router>
+            <Home path="/" />
+            <Foo path="foo/:id" />
+          </Router>
+        </LocationProvider>
       </Provider>
     );
   }

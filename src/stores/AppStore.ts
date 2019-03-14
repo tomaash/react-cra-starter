@@ -1,6 +1,6 @@
 import { observable } from 'mobx';
 import axios from 'axios';
-import { BrowserNavigation, Route } from 'navi';
+import { History, HistoryListenerParameter } from '@reach/router';
 
 interface User {
   id: number
@@ -12,12 +12,23 @@ interface User {
 export class AppStore {
 
   @observable users: User[] = [];
-  @observable currentRoute: Route<any>
+  @observable currentRoute: HistoryListenerParameter
 
-  setupNavigation(navigation) {
-    navigation.subscribe((route) => {
-      this.currentRoute = route
+  // setupNavigation(navigation) {
+  //   navigation.subscribe((route) => {
+  //     this.currentRoute = route
+  //   })
+  // }
+
+  setupHistory(history: History) {
+    console.log(history)
+    history.listen((state)=>{
+      console.log(state)
+      this.currentRoute = state
     })
+    // navigation.subscribe((route) => {
+    //   this.currentRoute = route
+    // })
   }
 
   loadUsers = async () => {

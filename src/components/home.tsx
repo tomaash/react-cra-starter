@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-export class Home extends Component {
+import { RouteComponentProps } from '@reach/router';
+
+export class Home extends Component<RouteComponentProps> {
   render() {
     return (
       <div className="App">
