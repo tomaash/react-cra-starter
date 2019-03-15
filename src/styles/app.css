@@ -21,9 +21,13 @@
   color: #61dafb;
 }
 
-.active {
-  color: red;
+/* Hack FontAwesome "lg" icon size to be compatible with Material UI */
+.svg-inline--fa.fa-lg {
+  width: 25px;
 }
+
+/* remove blue outline on clicked button */
+button:focus {outline:0;}
 
 @keyframes App-logo-spin {
   from {
@@ -33,3 +37,4 @@
     transform: rotate(360deg);
   }
 }
+

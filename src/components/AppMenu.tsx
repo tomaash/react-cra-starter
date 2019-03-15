@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { AppBar, Toolbar, IconButton, Typography, Button, Drawer, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu'
-import MoreVertIcon from '@material-ui/icons/MoreVert'
 
-import InboxIcon from '@material-ui/icons/Inbox'
-import MailIcon from '@material-ui/icons/Mail'
+import { MoreVert, Menu, Inbox, Mail, Home } from '@material-ui/icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { Link } from '@reach/router'
 
@@ -26,13 +24,13 @@ export const AppMenu = () => {
     <AppBar position="static">
       <Toolbar>
         <IconButton color="inherit" aria-label="Navigation" onClick={toggleDrawer}>
-          <MenuIcon />
+          <Menu />
         </IconButton>
         <Typography className='ml-4' variant="h6" color="inherit">
           MyApp
         </Typography>
         <IconButton color="inherit" className='ml-auto' aria-label="Menu">
-          <MoreVertIcon />
+          <MoreVert />
         </IconButton>
       </Toolbar>
     </AppBar>
@@ -40,12 +38,20 @@ export const AppMenu = () => {
       <div>
         <List>
           <ListItemLink onClick={close} to='/'>
-            <MailIcon />
+            <Home />
             <ListItemText primary="Home" />
           </ListItemLink>
-          <ListItemLink onClick={close} to='/foo/123'>
-            <InboxIcon />
-            <ListItemText primary="Foo" />
+          <ListItemLink onClick={close} to='/profile/leethaxxor'>
+            <FontAwesomeIcon size='lg' icon='user' />
+            <ListItemText primary="Profile" />
+          </ListItemLink>
+          <ListItemLink onClick={close} to='/list'>
+            <FontAwesomeIcon size='lg' icon='th-list' />
+            <ListItemText primary="List" />
+          </ListItemLink>
+          <ListItemLink onClick={close} to='/form'>
+            <FontAwesomeIcon size='lg' icon='plus-square' />
+            <ListItemText primary="Form" />
           </ListItemLink>
         </List>
       </div>

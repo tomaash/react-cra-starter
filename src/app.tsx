@@ -1,12 +1,9 @@
 import React, { Component, Suspense } from 'react';
 import logo from './logo.svg';
-import { Home } from '~/components/home';
-import { Foo } from '~/components/foo';
-// import { List } from '~/components/list';
-import { Form } from '~/components/form';
+import { Home } from '~/components/Home';
+import { Profile } from '~/components/Profile';
+import { ListPage } from '~/components/ListPage';
 import { AppStore } from '~/stores/AppStore';
-
-import { loadUsers } from './loaders/formLoader';
 
 import {
   createHistory,
@@ -19,9 +16,17 @@ import { toJS } from 'mobx';
 import { AppMenu } from './components/AppMenu';
 import { Provider, observer } from 'mobx-react';
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+
+import {
+  faBookOpen, faTasks, faSearchDollar, faMoneyCheckAlt, faHandHoldingUsd, faUserFriends, faUser, faThList, faPlusSquare
+} from '@fortawesome/free-solid-svg-icons'
+
+library.add(
+  faBookOpen, faTasks, faSearchDollar, faMoneyCheckAlt, faHandHoldingUsd, faUserFriends, faUser, faThList, faPlusSquare
+)
+
 export const history = createHistory(window as any)
-
-
 const appStore = new AppStore();
 appStore.setupHistory(history)
 
@@ -33,13 +38,11 @@ export class App extends Component {
       <Provider appStore={appStore}>
         <LocationProvider history={history}>
           <AppMenu />
-          {/* <nav>
-            <NavLink to="/">Home</NavLink>
-            <NavLink to="foo/123">Foo</NavLink>
-          </nav> */}
           <Router>
             <Home path="/" />
-            <Foo path="foo/:id" />
+            <Profile path="profile/:username" />
+            <ListPage path="list" />
+            <Profile path="profile/:username" />
           </Router>
         </LocationProvider>
       </Provider>

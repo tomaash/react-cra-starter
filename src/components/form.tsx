@@ -3,9 +3,11 @@ import { observer } from 'mobx-react'
 import validatorjs from 'validatorjs'
 import MobxReactForm from 'mobx-react-form'
 import dvr from 'mobx-react-form/lib/validators/DVR'
+import { validators } from 'mobx-react-form'
 import { MaterialTextField } from './MaterialTextField'
 import axios from 'axios'
 
+console.log(validators)
 const plugins = {
   dvr: dvr(validatorjs),
 }

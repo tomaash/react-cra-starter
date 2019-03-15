@@ -6,7 +6,7 @@ import { AppStore } from '~/stores/AppStore';
 
 @inject('appStore')
 @observer
-export class List extends Component<{ appStore?: AppStore }> {
+export class ListPage extends Component<{ appStore?: AppStore }> {
 
   render() {
     const { users } = this.props.appStore
