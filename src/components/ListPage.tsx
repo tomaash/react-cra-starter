@@ -1,10 +1,15 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
 import { observable, toJS } from 'mobx'
-import { Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
-import { AppStore } from '~/stores/AppStore';
-import { RouteComponentProps } from '@reach/router';
-
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow
+} from '@material-ui/core'
+import { AppStore } from '~/stores/AppStore'
+import { RouteComponentProps } from '@reach/router'
 
 interface ListPageProps extends RouteComponentProps {
   appStore?: AppStore
@@ -34,12 +39,11 @@ export class ListPage extends Component<ListPageProps> {
                   <TableCell>{item.first_name}</TableCell>
                   <TableCell>{item.last_name}</TableCell>
                 </TableRow>
-              );
+              )
             })}
           </TableBody>
         </Table>
       </>
-    );
+    )
   }
 }
-

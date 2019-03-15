@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from "@reach/router";
+import { Link } from '@reach/router'
 
 export const NavLink = props => (
   <Link
@@ -9,9 +9,9 @@ export const NavLink = props => (
       // anchor element's props
       return {
         style: {
-          color: isCurrent ? "red" : "blue"
+          color: isCurrent ? 'red' : 'blue'
         }
-      };
+      }
     }}
   />
-);
+)

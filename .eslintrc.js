@@ -32,7 +32,6 @@ module.exports = {
     'no-unused-vars': 1, 
     'no-console': 1, 
     'react/jsx-key': 1, 
-    'array-element-newline': ['error', 'always'],
     'max-len': ['error', 1100],
     'import/prefer-default-export': 0,
     'react/prefer-stateless-function': 0,

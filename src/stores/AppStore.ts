@@ -1,6 +1,6 @@
-import { observable } from 'mobx';
+import { observable } from 'mobx'
 import ky from 'ky'
-import { History, HistoryListenerParameter } from '@reach/router';
+import { History, HistoryListenerParameter } from '@reach/router'
 
 interface User {
   id: number
@@ -21,13 +21,11 @@ interface UserResponse extends ApiResponse {
 }
 
 export class AppStore {
-
-  @observable users: User[] = [];
+  @observable users: User[] = []
   @observable currentRoute: HistoryListenerParameter
 
   setupHistory(history: History) {
-    console.log(history)
-    history.listen((state)=>{
+    history.listen(state => {
       console.log(state)
       this.currentRoute = state
     })
@@ -37,5 +35,4 @@ export class AppStore {
     const res: UserResponse = await ky.get('https://reqres.in/api/users').json()
     this.users = res.data
   }
-
 }

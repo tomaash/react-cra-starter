@@ -22,12 +22,16 @@
 }
 
 /* Hack FontAwesome "lg" icon size to be compatible with Material UI */
+
 .svg-inline--fa.fa-lg {
   width: 25px;
 }
 
 /* remove blue outline on clicked button */
-button:focus {outline:0;}
+
+button:focus {
+  outline: 0;
+}
 
 @keyframes App-logo-spin {
   from {
@@ -37,4 +41,3 @@ button:focus {outline:0;}
     transform: rotate(360deg);
   }
 }
-
