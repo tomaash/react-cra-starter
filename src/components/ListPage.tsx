@@ -3,16 +3,23 @@ import { observer, inject } from 'mobx-react'
 import { observable, toJS } from 'mobx'
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
 import { AppStore } from '~/stores/AppStore';
+import { RouteComponentProps } from '@reach/router';
+
+
+interface ListPageProps extends RouteComponentProps {
+  appStore?: AppStore
+}
 
 @inject('appStore')
 @observer
-export class ListPage extends Component<{ appStore?: AppStore }> {
-
+export class ListPage extends Component<ListPageProps> {
+  componentDidMount() {
+    this.props.appStore.loadUsers()
+  }
   render() {
     const { users } = this.props.appStore
     return (
       <>
-        <h1>List</h1>
         <Table>
           <TableHead>
             <TableRow>

@@ -1,5 +1,5 @@
 import { observable } from 'mobx';
-import axios from 'axios';
+import ky from 'ky'
 import { History, HistoryListenerParameter } from '@reach/router';
 
 interface User {
@@ -9,16 +9,21 @@ interface User {
   avatar: string
 }
 
+interface ApiResponse {
+  page: 1
+  per_page: 3
+  total: 12
+  total_pages: 4
+}
+
+interface UserResponse extends ApiResponse {
+  data: User[]
+}
+
 export class AppStore {
 
   @observable users: User[] = [];
   @observable currentRoute: HistoryListenerParameter
-
-  // setupNavigation(navigation) {
-  //   navigation.subscribe((route) => {
-  //     this.currentRoute = route
-  //   })
-  // }
 
   setupHistory(history: History) {
     console.log(history)
@@ -26,14 +31,11 @@ export class AppStore {
       console.log(state)
       this.currentRoute = state
     })
-    // navigation.subscribe((route) => {
-    //   this.currentRoute = route
-    // })
   }
 
   loadUsers = async () => {
-    const res = await axios.get('https://reqres.in/api/users')
-    this.users = res.data.data
+    const res: UserResponse = await ky.get('https://reqres.in/api/users').json()
+    this.users = res.data
   }
 
 }

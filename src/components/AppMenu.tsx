@@ -13,9 +13,8 @@ function ListItemLink(props) {
 
 export const AppMenu = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const toggleDrawer = (val) => {
-    console.log(drawerOpen)
-    setDrawerOpen(val === undefined ? !drawerOpen : val)
+  const toggleDrawer = () => {
+    setDrawerOpen(!drawerOpen)
   }
   const close = () => {
     setDrawerOpen(false)

@@ -5,7 +5,7 @@ import MobxReactForm from 'mobx-react-form'
 import dvr from 'mobx-react-form/lib/validators/DVR'
 import { validators } from 'mobx-react-form'
 import { MaterialTextField } from './MaterialTextField'
-import axios from 'axios'
+import ky from 'ky';
 
 console.log(validators)
 const plugins = {
@@ -28,13 +28,10 @@ const hooks = {
   onError: (form) => {
     console.log('HUEHUEHUEHUE')
   },
-  onSuccess: (form) => {
+  onSuccess: async (form) => {
     const values = form.values()
-    axios.post('https://reqres.in/api/users', values).then(() => {
-      console.log('DONE')
-    }).catch((e) => {
-      console.log('ERROR', e)
-    })
+    const result = ky.post('https://reqres.in/api/users', values)
+    console.log(result)
   }
 }
 
