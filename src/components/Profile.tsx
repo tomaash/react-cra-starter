@@ -18,6 +18,7 @@ export class Profile extends Component<ProfileProps> {
         <h3 className='text-red-dark'>You have clicked {this.a} times</h3>
         <br />
         <Button
+          className='mb-8'
           color='primary'
           variant='raised'
           onClick={() => {
@@ -26,6 +27,10 @@ export class Profile extends Component<ProfileProps> {
         >
           Click me
         </Button>
+        <br />
+        {Array(1500)
+          .fill('Blah')
+          .join(' ')}
       </div>
     )
   }

@@ -48,13 +48,18 @@ export class App extends Component {
     return (
       <Provider appStore={appStore}>
         <LocationProvider history={history}>
-          <AppMenu />
-          <Router>
-            <Home path='/' />
-            <Profile path='profile/:username' />
-            <ListPage path='list' />
-            <Settings path='settings' />
-          </Router>
+          <div className='flex flex-col h-screen overflow-hidden'>
+            <AppMenu />
+            <Router className='flex-grow overflow-y-auto'>
+              <Home path='/' />
+              <Profile path='profile/:username' />
+              <ListPage path='list' />
+              <Settings path='settings' />
+            </Router>
+            <div className='p-2 bg-grey-light text-center text-sm'>
+              status bar
+            </div>
+          </div>
         </LocationProvider>
       </Provider>
     )
