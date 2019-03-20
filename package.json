@@ -46,7 +46,10 @@
   "scripts": {
     "start": "rescripts start",
     "build": "rescripts build",
-    "test": "rescripts test",
+    "test": "rescripts test --no-watch --verbose",
+    "test:watch": "rescripts test",
+    "test:node": "rescripts test --no-watch --env=node",
+    "test:ejected": "jest --config ./jest-config.js",
     "eject": "rescripts eject",
     "lint": "eslint ./src/ --ext .ts,.tsx",
     "prettify": "npx prettier --write \"./src/**/*.tsx\" \"./src/**/*.ts\" \"./src/**/*.css\""

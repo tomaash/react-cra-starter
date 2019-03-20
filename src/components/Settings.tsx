@@ -1,60 +1,76 @@
 import React, { Component } from 'react'
-import { observer } from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 import validatorjs from 'validatorjs'
 import MobxReactForm from 'mobx-react-form'
 import dvr from 'mobx-react-form/lib/validators/DVR'
 import { MaterialTextField } from './MaterialTextField'
-import axios from 'axios'
 import { RouteComponentProps } from '@reach/router'
-import { Button } from '@material-ui/core'
+import { Button, Snackbar, IconButton } from '@material-ui/core'
+import { AppStore } from '~/stores/AppStore'
+import { observable } from 'mobx'
+import { SnackbarPopup } from './shared/SnackbarPopup'
 
-const plugins = {
-  dvr: dvr(validatorjs)
+interface SettingsProps extends RouteComponentProps {
+  appStore?: AppStore
 }
 
-const fields = {
-  first_name: {
-    label: 'First Name',
-    placeholder: 'Insert First Name',
-    rules: 'required|string|between:5,25',
-    default: 'John'
-  },
-  last_name: {
-    label: 'Last Name',
-    placeholder: 'Insert Last Name',
-    rules: 'required|string|between:5,25',
-    default: 'Doe'
-  }
-}
-
-const hooks = {
-  onError: form => {
-    console.error('Form Error')
-  },
-  onSuccess: async form => {
-    const values = form.values()
-    const result = await axios.post('https://reqres.in/api/users', values)
-    console.log(result.data)
-  }
-}
-
-const form = new MobxReactForm({ fields }, { plugins, hooks })
-
+@inject('appStore')
 @observer
-export class Settings extends Component<RouteComponentProps> {
+export class Settings extends Component<SettingsProps> {
+  @observable popupConfig = {
+    message: 'Settings updated',
+    open: false
+  }
+
+  formHooks = {
+    onError: form => {
+      console.error('Form Error')
+    },
+    onSuccess: async form => {
+      const values = form.values()
+      await this.props.appStore.saveSettings(values)
+      this.popupConfig.open = true
+    }
+  }
+
+  formFields = {
+    first_name: {
+      label: 'First Name',
+      placeholder: 'Insert First Name',
+      rules: 'required|string|between:5,25',
+      default: 'John'
+    },
+    last_name: {
+      label: 'Last Name',
+      placeholder: 'Insert Last Name',
+      rules: 'required|string|between:5,25',
+      default: 'Doe'
+    }
+  }
+  form = new MobxReactForm(
+    { fields: this.formFields },
+    { plugins: { dvr: dvr(validatorjs) }, hooks: this.formHooks }
+  )
   render() {
     return (
       <div className='p-8'>
-        <form onSubmit={form.onSubmit}>
-          <MaterialTextField field={form.$('first_name')} />
-          <MaterialTextField field={form.$('last_name')} />
+        <form onSubmit={this.form.onSubmit}>
+          <MaterialTextField
+            testId='first_name'
+            field={this.form.$('first_name')}
+          />
+          <MaterialTextField
+            testId='last_name'
+            field={this.form.$('last_name')}
+          />
 
           <br />
           <Button
+            data-testid='submit_button'
             className='mr-2'
             variant='outlined'
             color='primary'
-            onClick={form.onSubmit}
+            onClick={this.form.onSubmit}
           >
             Submit
           </Button>
@@ -62,16 +78,17 @@ export class Settings extends Component<RouteComponentProps> {
             className='mr-2'
             variant='outlined'
             color='secondary'
-            onClick={form.onClear}
+            onClick={this.form.onClear}
           >
             Clear
           </Button>
-          <Button variant='outlined' onClick={form.onReset}>
+          <Button variant='outlined' onClick={this.form.onReset}>
             Reset
           </Button>
 
-          <p>{form.error}</p>
+          <p>{this.form.error}</p>
         </form>
+        <SnackbarPopup config={this.popupConfig} />
       </div>
     )
   }

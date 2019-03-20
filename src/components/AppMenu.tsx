@@ -12,7 +12,11 @@ import {
   ListItemText
 } from '@material-ui/core'
 
-import { MoreVert, Menu, Inbox, Mail, Home, Settings } from '@material-ui/icons'
+import MoreVertIcon from '@material-ui/icons/MoreVert'
+import MenuIcon from '@material-ui/icons/Menu'
+import HomeIcon from '@material-ui/icons/Home'
+import SettingsIcon from '@material-ui/icons/Settings'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { Link } from '@reach/router'
@@ -43,13 +47,13 @@ export const AppMenu = () => {
             aria-label='Navigation'
             onClick={toggleDrawer}
           >
-            <Menu />
+            <MenuIcon />
           </IconButton>
           <Typography className='ml-4' variant='h6' color='inherit'>
             MyApp
           </Typography>
           <IconButton color='inherit' className='ml-auto' aria-label='Menu'>
-            <MoreVert />
+            <MoreVertIcon />
           </IconButton>
         </Toolbar>
       </AppBar>
@@ -57,7 +61,7 @@ export const AppMenu = () => {
         <div>
           <List>
             <ListItemLink onClick={close} to='/'>
-              <Home />
+              <HomeIcon />
               <ListItemText primary='Home' />
             </ListItemLink>
             <ListItemLink onClick={close} to='/profile/leethaxxor'>
@@ -69,7 +73,7 @@ export const AppMenu = () => {
               <ListItemText primary='List' />
             </ListItemLink>
             <ListItemLink onClick={close} to='/settings'>
-              <Settings />
+              <SettingsIcon />
               <ListItemText primary='Settings' />
             </ListItemLink>
           </List>

@@ -1,6 +1,7 @@
 import { observable } from 'mobx'
 import axios from 'axios'
 import { History, HistoryListenerParameter } from '@reach/router'
+import { async } from 'q'
 
 interface User {
   id: number
@@ -34,5 +35,11 @@ export class AppStore {
   loadUsers = async () => {
     const res = await axios.get('https://reqres.in/api/users')
     this.users = res.data.data
+  }
+
+  saveSettings = async data => {
+    const res = await axios.post('https://reqres.in/api/users', data)
+    console.log(res)
+    return res
   }
 }

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Profile /> renders settings component 1`] = `
+exports[`<Profile /> renders component 1`] = `
 "
 Hello, 
 You have clicked 0 times
