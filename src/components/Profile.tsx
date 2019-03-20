@@ -15,12 +15,15 @@ export class Profile extends Component<ProfileProps> {
     return (
       <div className='p-8'>
         <h1>Hello, {this.props.username}</h1>
-        <h3 className='text-red-dark'>You have clicked {this.a} times</h3>
+        <h3 data-testid='counter' className='text-red-dark'>
+          You have clicked {this.a} times
+        </h3>
         <br />
         <Button
+          data-testid='button'
           className='mb-8'
           color='primary'
-          variant='raised'
+          variant='contained'
           onClick={() => {
             this.a++
           }}

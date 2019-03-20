@@ -35,7 +35,7 @@ export class ListPage extends Component<ListPageProps> {
           <TableBody>
             {users.map(item => {
               return (
-                <TableRow key={item.id}>
+                <TableRow data-testid='table-row' key={item.id}>
                   <TableCell>{item.first_name}</TableCell>
                   <TableCell>{item.last_name}</TableCell>
                 </TableRow>

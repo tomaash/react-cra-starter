@@ -1,13 +1,15 @@
 const path = require('path')
 
 const logConfig = config => {
-  setTimeout(() => { console.log(config) }, 100)
+  setTimeout(() => {
+    console.log(config)
+  }, 100)
   return config
 }
 
 const postcss = config => {
-  require('react-app-rewire-postcss')(config, true);
-  return config;
+  require('react-app-rewire-postcss')(config, true)
+  return config
 }
 
 const alias = config => {
@@ -15,8 +17,19 @@ const alias = config => {
   return config
 }
 
+const jest = {
+  jest: config => {
+    config.moduleNameMapper = {
+      '^~/(.*)': '<rootDir>/src/$1'
+    }
+    config.testEnvironment = 'node'
+    return config
+  }
+}
+
 module.exports = [
   alias,
   postcss,
-  //logConfig,
+  jest
+  // logConfig
 ]

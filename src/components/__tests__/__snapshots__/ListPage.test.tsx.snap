@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ListPage /> renders component 1`] = `
+"
+First Name
+Last Name
+"
+`;
+
+exports[`<ListPage /> waits for data load 1`] = `
+"
+First Name
+Last Name
+George
+Bluth
+Janet
+Weaver
+Emma
+Wong
+"
+`;

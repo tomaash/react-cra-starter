@@ -4,7 +4,7 @@ import validatorjs from 'validatorjs'
 import MobxReactForm from 'mobx-react-form'
 import dvr from 'mobx-react-form/lib/validators/DVR'
 import { MaterialTextField } from './MaterialTextField'
-import ky from 'ky'
+import axios from 'axios'
 import { RouteComponentProps } from '@reach/router'
 import { Button } from '@material-ui/core'
 
@@ -16,12 +16,14 @@ const fields = {
   first_name: {
     label: 'First Name',
     placeholder: 'Insert First Name',
-    rules: 'required|string|between:5,25'
+    rules: 'required|string|between:5,25',
+    default: 'John'
   },
   last_name: {
     label: 'Last Name',
     placeholder: 'Insert Last Name',
-    rules: 'required|string|between:5,25'
+    rules: 'required|string|between:5,25',
+    default: 'Doe'
   }
 }
 
@@ -31,14 +33,12 @@ const hooks = {
   },
   onSuccess: async form => {
     const values = form.values()
-    const result = await ky.post('https://reqres.in/api/users', values).json()
-    console.log(result)
+    const result = await axios.post('https://reqres.in/api/users', values)
+    console.log(result.data)
   }
 }
 
-const values = { first_name: 'John', last_name: 'Doe' }
-
-const form = new MobxReactForm({ fields, values }, { plugins, hooks })
+const form = new MobxReactForm({ fields }, { plugins, hooks })
 
 @observer
 export class Settings extends Component<RouteComponentProps> {

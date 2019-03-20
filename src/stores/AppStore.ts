@@ -1,5 +1,5 @@
 import { observable } from 'mobx'
-import ky from 'ky'
+import axios from 'axios'
 import { History, HistoryListenerParameter } from '@reach/router'
 
 interface User {
@@ -32,7 +32,7 @@ export class AppStore {
   }
 
   loadUsers = async () => {
-    const res: UserResponse = await ky.get('https://reqres.in/api/users').json()
-    this.users = res.data
+    const res = await axios.get('https://reqres.in/api/users')
+    this.users = res.data.data
   }
 }
