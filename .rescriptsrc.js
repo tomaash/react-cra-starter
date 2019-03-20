@@ -22,7 +22,6 @@ const jest = {
     config.moduleNameMapper = {
       '^~/(.*)': '<rootDir>/src/$1'
     }
-    config.testEnvironment = 'node'
     return config
   }
 }

@@ -1,9 +1,9 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { Profile } from '../Profile'
 import { squashHtmlTags, renderText } from '~/utils/testUtils'
+import { Profile } from '../Profile'
 
-describe('<Settings />', () => {
+describe('<Profile />', () => {
   it('renders settings component', () => {
     const text = renderText(<Profile />)
     expect(squashHtmlTags(text)).toMatchSnapshot()

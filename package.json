@@ -54,11 +54,6 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "//jest": {
-    "moduleNameMapper": {
-      "^~/(.*)": "<rootDir>/src/$1"
-    }
-  },
   "husky": {
     "hooks": {
       "pre-commit": "pretty-quick --staged"

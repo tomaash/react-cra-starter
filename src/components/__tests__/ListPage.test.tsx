@@ -1,9 +1,9 @@
 import React from 'react'
-import { mount } from 'enzyme'
-import { squashHtmlTags, renderText, startPolly } from '~/utils/testUtils'
-import { ListPage } from '../ListPage'
-import { AppStore } from '~/stores/AppStore'
+import { renderText, squashHtmlTags, startPolly } from '~/utils/testUtils'
+import { shallow, mount } from 'enzyme'
 import { Provider } from 'mobx-react'
+import { AppStore } from '~/stores/AppStore'
+import { ListPage } from '../ListPage'
 import { when } from 'mobx'
 
 describe('<ListPage />', () => {
