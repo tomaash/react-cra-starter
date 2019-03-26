@@ -16,6 +16,6 @@ describe('<Profile />', () => {
     expect(counter).toIncludeText('0')
     wrapper.find('[data-testid="button"]').simulate('click')
     counter = wrapper.find('[data-testid="counter"]')
-    expect(counter).toIncludeText('2')
+    expect(counter).toIncludeText('1')
   })
 })
