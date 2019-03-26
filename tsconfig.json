@@ -2,11 +2,7 @@
   "extends": "./tspaths.json",
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "es6",
-      "es7",
-      "dom"
-    ],
+    "lib": ["es6", "es7", "dom"],
     "allowJs": true,
     "skipLibCheck": true,
     "experimentalDecorators": true,
@@ -23,7 +19,5 @@
     "noEmit": true,
     "jsx": "preserve"
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src"]
 }

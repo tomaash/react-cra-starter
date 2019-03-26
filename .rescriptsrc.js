@@ -13,7 +13,7 @@ const postcss = config => {
 }
 
 const alias = config => {
-  config.resolve.alias['~'] = path.resolve(__dirname, 'src/')
+  config.resolve.alias['~'] = path.resolve('./src/')
   return config
 }
 

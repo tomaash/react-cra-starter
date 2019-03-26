@@ -3,7 +3,7 @@ import logo from './logo.svg'
 import { Home } from '~/components/Home'
 import { Profile } from '~/components/Profile'
 import { ListPage } from '~/components/ListPage'
-import { Settings } from './components/Settings'
+import { Settings } from '~/components/Settings'
 import { AppStore } from '~/stores/AppStore'
 
 import { createHistory, LocationProvider, Link, Router } from '@reach/router'
